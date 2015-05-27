@@ -49,18 +49,24 @@ def test_word():
 
 @xfail
 def test_words():
+    """words can take an optional count argument. In case it exists, the text
+    must match that number of words."""
+    assert v.words("hello")
+    assert v.words("hello world")
+    assert v.words("raggggg hammer dog")
+    assert v.words("18-wheeler tarbox")
     assert v.words("hello", count=1)
     assert v.words("hello world", count=2)
     assert v.words("raggggg hammer dog", count=3)
     assert v.words("18-wheeler tarbox", count=2)
-    assert not v.words("", count=1)
-    assert not v.words("12", count=1)
-    assert not v.word("hey !!!", count=2)
-    assert not v.word("bar*us w!zard", count=2)
-    assert v.words("hello", count=2)
-    assert v.words("hello world", count=3)
-    assert v.words("raggggg hammer dog", count=1)
-    assert v.words("18-wheeler tarbox", count=3)
+    assert not v.words("")
+    assert not v.words("12")
+    assert not v.words("hey !!!", count=2)
+    assert not v.words("bar*us w!zard", count=2)
+    assert not v.words("hello", count=2)
+    assert not v.words("hello world", count=3)
+    assert not v.words("raggggg hammer dog", count=1)
+    assert not v.words("18-wheeler tarbox", count=3)
 
 
 @xfail
@@ -105,6 +111,22 @@ def test_money():
 
 
 @xfail
+def test_zip():
+    assert v.zipcode("63936")
+    assert v.zipcode("50583")
+    assert v.zipcode("48418")
+    assert v.zipcode("06399")
+    assert v.zipcode("26433-3235")
+    assert v.zipcode("64100-6308")
+    assert not v.zipcode("")
+    assert not v.zipcode("7952")
+    assert not v.zipcode("115761")
+    assert not v.zipcode("60377-331")
+    assert not v.zipcode("8029-3924")
+
+## HARD MODE BEGINS
+
+@xfail
 def test_email():
     """Some of the emails listed as invalid are actually valid according to
     the email spec, but we will not accept them."""
@@ -122,21 +144,6 @@ def test_email():
     assert not v.email("legros.curley")
     assert not v.email("mertz.net")
     assert not v.email("bonita43@")
-
-
-@xfail
-def test_zip():
-    assert v.zipcode("63936")
-    assert v.zipcode("50583")
-    assert v.zipcode("48418")
-    assert v.zipcode("06399")
-    assert v.zipcode("26433-3235")
-    assert v.zipcode("64100-6308")
-    assert not v.zipcode("")
-    assert not v.zipcode("7952")
-    assert not v.zipcode("115761")
-    assert not v.zipcode("60377-331")
-    assert not v.zipcode("8029-3924")
 
 
 @xfail
