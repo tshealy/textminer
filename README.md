@@ -42,7 +42,8 @@ In addition to the requirements from **Hard Mode**:
 Add validators, separators, and extractors with tests for:
 
 * URLs
-* Dates and times
+* Times
+* [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 * Palindromes
 
 ## Additional Resources

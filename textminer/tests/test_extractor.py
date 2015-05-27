@@ -4,6 +4,7 @@ params = pytest.mark.parametrize
 
 import textminer.extractor as x
 
+@xfail
 def test_phone_numbers():
     text = """Dear Mr. Davis,
 
@@ -23,6 +24,7 @@ You can contact me at (919) 123-4569 at your convenience."""
 
 ## HARD MODE BEGINS
 
+@xfail
 def test_emails():
     text = """Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi
     welsh onion daikon amaranth@gmail.com tatsoi tomatillo azuki bean garlic.

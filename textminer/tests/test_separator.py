@@ -55,7 +55,7 @@ def test_money(input, expected):
     """We are just concerned with dollars here for now but might take other
     currencies later."""
     assert s.money(input) == expected
-    
+
 
 @xfail
 @params("input,expected", [
@@ -72,7 +72,46 @@ def test_money(input, expected):
 def test_zip(input, expected):
     assert s.zipcode(input) == expected
 
+
+@xfail
+@params("input,expected", [
+    ("9/4/1976", {"month": 9, "day": 4, "year": 1976}),
+    ("1976-09-04", {"month": 9, "day": 4, "year": 1976}),
+    ("2015-01-01", {"month": 1, "day": 1, "year": 2015}),
+    ("02/15/2004", {"month": 2, "day": 15, "year": 2004}),
+    ("9/4", None),
+    ("2015", None),
+])
+def test_date(input, expected):
+    assert s.date(input) == expected
+
+
 ## HARD MODE BEGINS
+
+@xfail
+@params("input,expected", [
+    ("9/4/1976", {"month": 9, "day": 4, "year": 1976}),
+    ("1976-09-04", {"month": 9, "day": 4, "year": 1976}),
+    ("2015-01-01", {"month": 1, "day": 1, "year": 2015}),
+    ("02/15/2004", {"month": 2, "day": 15, "year": 2004}),
+    ("9/4", None),
+    ("2015", None),
+])
+def test_date(input, expected):
+    assert s.date(input) == expected
+
+
+@xfail
+@params("input,expected", [
+    ("2014 Jan 01", {"month": 1, "day": 1, "year": 2014}),
+    ("2014 January 01", {"month": 1, "day": 1, "year": 2014}),
+    ("Jan. 1, 2015", {"month": 1, "day": 1, "year": 2014}),
+    ("07/40/2015", None),
+    ("02/30/2015", None),
+])
+def test_hard_date(input, expected):
+    assert s.date(input) == expected
+
 
 @xfail
 @params("input,expected", [

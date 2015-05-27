@@ -124,7 +124,28 @@ def test_zip():
     assert not v.zipcode("60377-331")
     assert not v.zipcode("8029-3924")
 
+
+@xfail
+def test_date():
+    assert v.date("9/4/1976")
+    assert v.date("1976-09-04")
+    assert v.date("2015-01-01")
+    assert v.date("02/15/2004")
+    assert not v.date("9/4")
+    assert not v.date("2015")
+
+
 ## HARD MODE BEGINS
+
+
+@xfail
+def test_hard_date():
+    assert v.date("2014 Jan 01")
+    assert v.date("2014 January 01")
+    assert v.date("Jan. 1, 2015")
+    assert not v.date("07/40/2015")
+    assert not v.date("02/30/2015")
+
 
 @xfail
 def test_email():
